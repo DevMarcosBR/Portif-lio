@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcos Vinicius · Desenvolvedor Web</title>
+<meta name="description" content="Portfólio de projetos web — HTML, CSS, JavaScript.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/portfolio.css">
+<style>
+/* Hero específico da home */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 0 5rem;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(197,248,42,.12),transparent 70%);filter:blur(40px);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:4rem;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(197,248,42,.08);border:1px solid rgba(197,248,42,.25);padding:.45rem 1rem;border-radius:999px;font-size:.8rem;font-weight:500;margin-bottom:1.6rem;color:var(--acento)}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--acento);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.8rem);margin-bottom:1.4rem}
+.hero h1 .acento{color:var(--acento);display:inline-block;position:relative}
+.hero h1 .acento::after{content:"_";color:var(--acento);animation:piscar 1s step-end infinite}
+@keyframes piscar{50%{opacity:0}}
+.hero p{font-size:1.1rem;color:var(--suave);max-width:520px;margin-bottom:2.2rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.hero-stats{display:flex;gap:3rem;flex-wrap:wrap}
+.stat strong{font-family:'Space Grotesk',sans-serif;font-size:2rem;color:var(--acento);display:block;line-height:1}
+.stat span{font-size:.82rem;color:var(--suave);letter-spacing:.05em}
+.hero-visual{position:relative}
+.hero-visual .card{background:var(--card);border:1px solid var(--borda);border-radius:var(--radius);padding:1.4rem;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:rotate(-2deg);transition:transform .5s}
+.hero-visual:hover .card{transform:rotate(0)}
+.code-header{display:flex;gap:.4rem;margin-bottom:1rem}
+.code-header span{width:12px;height:12px;border-radius:50%;background:#333}
+.code-header span:nth-child(1){background:#ff5f57}
+.code-header span:nth-child(2){background:#febc2e}
+.code-header span:nth-child(3){background:#28c840}
+.code{font-family:'Space Grotesk',monospace;font-size:.88rem;line-height:1.8;color:var(--suave)}
+.code .k{color:#ff7b72}
+.code .s{color:var(--acento)}
+.code .c{color:#6a737d;font-style:italic}
+.code .f{color:#d2a8ff}
+
+/* Destaques */
+.destaque{background:var(--bg-2)}
+.destaque-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.6rem}
+.destaque-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);max-width:500px}
+.destaque-head p{color:var(--suave);max-width:420px}
+.link-seta{font-weight:600;color:var(--acento);display:inline-flex;gap:.4rem;align-items:center;transition:gap .25s}
+.link-seta:hover{gap:.8rem}
+
+/* CTA final */
+.cta-final{background:linear-gradient(135deg,rgba(197,248,42,.08),transparent);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda);text-align:center}
+.cta-final h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem}
+.cta-final p{color:var(--suave);margin-bottom:2rem;max-width:500px;margin-inline:auto}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:3rem}
+  .hero-visual{order:-1}
+}
+</style>
+</head>
+<body>
+
+<header id="topo">
+  <div class="container nav">
+    <a href="index.html" class="logo">&lt;<span>dev</span>/&gt;</a>
+    <nav class="nav-links">
+      <a href="index.html" class="ativo">Início</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <a href="contato.html" class="btn-cta desktop">Vamos conversar</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+<nav class="menu-mobile">
+  <a href="index.html">Início</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="projetos.html">Projetos</a>
+  <a href="contato.html">Contato</a>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div data-reveal>
+        <span class="hero-badge"><span class="dot"></span> Disponível para novos projetos</span>
+        <h1>Olá, eu sou <span class="acento">Marcos Vinicius</span><br>desenvolvedor web.</h1>
+        <p>Crio sites e aplicações web com foco em performance, design limpo e experiência do usuário. Transformo ideias em código que funciona.</p>
+        <div class="hero-btns">
+          <a href="projetos.html" class="btn-cta">Ver projetos</a>
+          <a href="contato.html" class="btn-outline">Fale comigo →</a>
+        </div>
+        <div class="hero-stats">
+          <!--<div class="stat"><strong>+10</strong><span>projetos entregues</span></div> -->
+          <div class="stat"><strong>3 anos</strong><span>de estudo</span></div>
+          <div class="stat"><strong>100%</strong><span>frontend</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" data-reveal style="--d:.15s">
+        <div class="card">
+          <div class="code-header"><span></span><span></span><span></span></div>
+          <div class="code">
+            <span class="c">// sobre-mim.js</span><br>
+            <span class="k">const</span> dev = {<br>
+            &nbsp;&nbsp;nome: <span class="s">"Marcos Vinicius"</span>,<br>
+            &nbsp;&nbsp;stack: [<span class="s">"HTML"</span>, <span class="s">"CSS"</span>, <span class="s">"JS"</span>],<br>
+            &nbsp;&nbsp;cafe: <span class="k">true</span>,<br>
+            &nbsp;&nbsp;<span class="f">criar</span>: () =&gt; <span class="s">"coisas legais"</span><br>
+            };
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destaques -->
+  <section class="destaque">
+    <div class="container">
+      <div class="destaque-head" data-reveal>
+        <div>
+          <span class="tag">Destaques</span>
+          <h2>Projetos recentes</h2>
+        </div>
+        <p>Uma seleção dos trabalhos que mais me orgulho. Cada um resolveu um problema real.</p>
+      </div>
+      <div class="projetos-grid" id="destaques-grid">
+        <!-- preenchido via JS -->
+      </div>
+      <div style="text-align:center;margin-top:3rem" data-reveal>
+        <a href="projetos.html" class="link-seta">Ver todos os projetos →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-final">
+    <div class="container" data-reveal>
+      <h2>Tem uma ideia na cabeça?</h2>
+      <p>Bora transformar em código. Me conta o que você precisa e eu te respondo em até 24h.</p>
+      <a href="contato.html" class="btn-cta">Começar um projeto →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="social">
+      <a href="#" target="_blank" aria-label="GitHub">GitHub</a>
+      <a href="#" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+    </div>
+    <p>© 2026 Marcos Vinicius · Feito com 💚 e muito café</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Dados dos projetos (fonte única) ===== */
+const PROJETOS = [
+  //{id:'big-safra', titulo:'Big Safra · Cerealista', desc:'Site institucional completo para uma cerealista, com catálogo de produtos, calculadora de pedidos e envio direto pro WhatsApp.', tags:['HTML','CSS','JavaScript'], cats:['completo','js'], img:'projeto-cerealista', destaque:true, link:'#', codigo:'#'},
+  {id:'calculadora', titulo:'Calculadora de Mesa', desc:'Calculadora com visual retrô, fita de registro, memória, suporte a teclado físico e som de tecla.', tags:['HTML','CSS','JavaScript'], cats:['js'], img:'projeto-calculadora', link:'#', codigo:'#'},
+  //{id:'landing', titulo:'Landing Page Responsiva', desc:'Página de captura com hero animado, formulário funcional e integração com WhatsApp para leads.', tags:['HTML','CSS','JavaScript'], cats:['html','js'], img:'projeto-landing', link:'#', codigo:'#'},
+  //{id:'cardapio', titulo:'Cardápio Digital', desc:'Cardápio online para restaurante com filtros por categoria, busca e layout mobile-first.', tags:['HTML','CSS'], cats:['html'], img:'projeto-cardapio', link:'#', codigo:'#'},
+  //{id:'jogo', titulo:'Jogo da Memória', desc:'Jogo da memória com animações, contador de tempo e ranking salvo no navegador.', tags:['HTML','CSS','JavaScript'], cats:['js'], img:'projeto-jogo', link:'#', codigo:'#'},
+  //{id:'blog', titulo:'Blog Pessoal', desc:'Blog estático com artigos, categorias, busca local e modo escuro/claro.', tags:['HTML','CSS','JavaScript'], cats:['completo','html'], img:'projeto-blog', link:'#', codigo:'#'}
+];
+
+/* Renderiza destaques (3 primeiros com destaque:true) */
+const grid = document.getElementById('destaques-grid');
+const destaques = PROJETOS.filter(p => p.destaque).slice(0, 3);
+destaques.forEach((p, i) => {
+  const d = i * 0.08;
+  grid.insertAdjacentHTML('beforeend', `
+    <article class="projeto" data-reveal style="--d:${d}s">
+      <div class="projeto-img">
+        ${p.destaque ? '<span class="projeto-badge">Destaque</span>' : ''}
+        <img src="https://picsum.photos/seed/${p.img}/640/400" alt="${p.titulo}" loading="lazy">
+      </div>
+      <div class="projeto-body">
+        <h3>${p.titulo}</h3>
+        <p>${p.desc}</p>
+        <div class="projeto-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+        <div class="projeto-links">
+          <a href="projeto.html?id=${p.id}">Ver detalhes →</a>
+          <a href="${p.codigo}" target="_blank">Código</a>
+        </div>
+      </div>
+    </article>
+  `);
+});
+
+/* ===== Lógica compartilhada ===== */
+(function(){
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+
+  const toggle = document.getElementById('menu-toggle');
+  const backdrop = document.getElementById('backdrop');
+  const fechar = () => { document.body.classList.remove('menu-open'); toggle.textContent = '☰'; };
+  toggle.addEventListener('click', () => {
+    const aberto = document.body.classList.toggle('menu-open');
+    toggle.textContent = aberto ? '✕' : '☰';
+  });
+  backdrop.addEventListener('click', fechar);
+  document.querySelectorAll('.menu-mobile a').forEach(a => a.addEventListener('click', fechar));
+
+  const alvos = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver(entradas => {
+    entradas.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  alvos.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

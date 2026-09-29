@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos · Marcos Vinicius</title>
+<meta name="description" content="Todos os projetos que desenvolvi — sites, aplicações e experimentos.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo">&lt;<span>dev</span>/&gt;</a>
+    <nav class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="projetos.html" class="ativo">Projetos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <a href="contato.html" class="btn-cta desktop">Vamos conversar</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+<nav class="menu-mobile">
+  <a href="index.html">Início</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="projetos.html">Projetos</a>
+  <a href="contato.html">Contato</a>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Início</a> ✦ Projetos</p>
+      <h1>Todos os <em>projetos</em></h1>
+      <p>Aqui está tudo que já desenvolvi — de sites institucionais a experimentos pessoais. Clica num deles pra ver os detalhes.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="filtros" data-reveal>
+        <button class="filtro ativo" data-filter="todos">Todos</button>
+        <button class="filtro" data-filter="html">HTML/CSS</button>
+        <button class="filtro" data-filter="js">JavaScript</button>
+        <button class="filtro" data-filter="completo">Completo</button>
+      </div>
+      <div class="projetos-grid" id="todos-projetos"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="social">
+      <a href="#" target="_blank" aria-label="GitHub">GitHub</a>
+      <a href="#" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+    </div>
+    <p>© 2026 Marcos Vinicius · Feito com 💚 e muito café</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Fonte única de dados ===== */
+const PROJETOS = [
+  //{id:'big-safra', titulo:'Big Safra · Cerealista', desc:'Site institucional completo para uma cerealista, com catálogo de produtos, calculadora de pedidos e envio direto pro WhatsApp.', tags:['HTML','CSS','JavaScript'], cats:['completo','js'], img:'projeto-cerealista', destaque:true, link:'#', codigo:'#'},
+  {id:'calculadora', titulo:'Calculadora de Mesa', desc:'Calculadora com visual retrô, fita de registro, memória, suporte a teclado físico e som de tecla.', tags:['HTML','CSS','JavaScript'], cats:['js'], img:'projeto-calculadora', link:'#', codigo:'#'},
+  //{id:'landing', titulo:'Landing Page Responsiva', desc:'Página de captura com hero animado, formulário funcional e integração com WhatsApp para leads.', tags:['HTML','CSS','JavaScript'], cats:['html','js'], img:'projeto-landing', link:'#', codigo:'#'},
+  //{id:'cardapio', titulo:'Cardápio Digital', desc:'Cardápio online para restaurante com filtros por categoria, busca e layout mobile-first.', tags:['HTML','CSS'], cats:['html'], img:'projeto-cardapio', link:'#', codigo:'#'},
+  //{id:'jogo', titulo:'Jogo da Memória', desc:'Jogo da memória com animações, contador de tempo e ranking salvo no navegador.', tags:['HTML','CSS','JavaScript'], cats:['js'], img:'projeto-jogo', link:'#', codigo:'#'},
+  //{id:'blog', titulo:'Blog Pessoal', desc:'Blog estático com artigos, categorias, busca local e modo escuro/claro.', tags:['HTML','CSS','JavaScript'], cats:['completo','html'], img:'projeto-blog', link:'#', codigo:'#'},
+  //{id:'portfolio', titulo:'Este Portfólio', desc:'O site que você está navegando agora. Multi-página, responsivo e com dados centralizados em JS.', tags:['HTML','CSS','JavaScript'], cats:['completo','js'], img:'projeto-portfolio', link:'#', codigo:'#'},
+  //{id:'relogio', titulo:'Relógio Analógico', desc:'Relógio em SVG com ponteiros animados em tempo real e tema customizável.', tags:['HTML','CSS','JavaScript','SVG'], cats:['js'], img:'projeto-relogio', link:'#', codigo:'#'},
+  //{id:'weather', titulo:'Previsão do Tempo', desc:'App que consulta API de clima e mostra a previsão da sua cidade com ícones animados.', tags:['JavaScript','API'], cats:['js'], img:'projeto-weather', link:'#', codigo:'#'}
+];
+
+const grid = document.getElementById('todos-projetos');
+function render(filtro){
+  grid.innerHTML = '';
+  PROJETOS.forEach((p, i) => {
+    const mostra = filtro === 'todos' || p.cats.includes(filtro);
+    if (!mostra) return;
+    const d = (i % 3) * 0.08;
+    grid.insertAdjacentHTML('beforeend', `
+      <article class="projeto" data-reveal style="--d:${d}s">
+        <div class="projeto-img">
+          ${p.destaque ? '<span class="projeto-badge">Destaque</span>' : ''}
+          <img src="img/1.png" alt="${p.titulo}" loading="lazy">
+        </div>
+        <div class="projeto-body">
+          <h3>${p.titulo}</h3>
+          <p>${p.desc}</p>
+          <div class="projeto-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+          <div class="projeto-links">
+            <a href="projeto.html?id=${p.id}">Ver detalhes →</a>
+            <a href="${p.codigo}" target="_blank">Código</a>
+          </div>
+        </div>
+      </article>
+    `);
+  });
+  /* Re-observa os novos elementos */
+  document.querySelectorAll('[data-reveal]:not(.in)').forEach(el => io.observe(el));
+}
+
+/* Filtros */
+document.querySelectorAll('.filtro').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.filtro').forEach(f => f.classList.remove('ativo'));
+  btn.classList.add('ativo');
+  render(btn.dataset.filter);
+}));
+
+/* Lógica compartilhada */
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+const toggle = document.getElementById('menu-toggle');
+const backdrop = document.getElementById('backdrop');
+const fechar = () => { document.body.classList.remove('menu-open'); toggle.textContent = '☰'; };
+toggle.addEventListener('click', () => {
+  const aberto = document.body.classList.toggle('menu-open');
+  toggle.textContent = aberto ? '✕' : '☰';
+});
+backdrop.addEventListener('click', fechar);
+document.querySelectorAll('.menu-mobile a').forEach(a => a.addEventListener('click', fechar));
+const io = new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.15});
+render('todos');
+</script>
+</body>
+</html>

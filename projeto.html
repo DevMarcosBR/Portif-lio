@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto · Marcos Vinicius </title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/portfolio.css">
+<style>
+.projeto-hero{padding:10rem 0 3rem;position:relative;overflow:hidden}
+.projeto-hero::before{content:"";position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(197,248,42,.12),transparent 70%);filter:blur(40px);pointer-events:none}
+.projeto-meta{display:flex;flex-wrap:wrap;gap:1.5rem;margin:1.5rem 0 2rem;font-size:.85rem;color:var(--suave)}
+.projeto-meta span{display:inline-flex;align-items:center;gap:.4rem}
+.projeto-tags-grande{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.projeto-tags-grande span{font-size:.78rem;font-weight:600;color:var(--acento);background:rgba(197,248,42,.08);padding:.35rem .9rem;border-radius:999px}
+.projeto-acoes{display:flex;gap:1rem;flex-wrap:wrap}
+.projeto-capa{border-radius:var(--radius);overflow:hidden;border:1px solid var(--borda);margin:3rem 0;box-shadow:0 30px 60px rgba(0,0,0,.4)}
+.projeto-capa img{width:100%;display:block}
+.projeto-conteudo{display:grid;grid-template-columns:1fr 320px;gap:4rem;align-items:start}
+.projeto-conteudo article{font-size:1.02rem;color:var(--texto)}
+.projeto-conteudo article h2{font-size:1.6rem;margin:2.5rem 0 1rem}
+.projeto-conteudo article h2:first-child{margin-top:0}
+.projeto-conteudo article p{color:var(--suave);margin-bottom:1rem}
+.projeto-conteudo article ul{color:var(--suave);margin:1rem 0 1.5rem;padding-left:1.2rem;list-style:disc}
+.projeto-conteudo article ul li{margin-bottom:.4rem}
+.projeto-conteudo aside{position:sticky;top:100px;background:var(--card);border:1px solid var(--borda);border-radius:var(--radius);padding:1.6rem}
+.projeto-conteudo aside h4{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--suave);margin-bottom:.8rem}
+.projeto-conteudo aside dl{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1rem;font-size:.9rem;margin-bottom:1.5rem}
+.projeto-conteudo aside dt{color:var(--suave)}
+.projeto-conteudo aside dd{color:var(--texto);font-weight:500}
+.projeto-conteudo aside .btn-cta{display:block;text-align:center;margin-bottom:.6rem}
+.projeto-conteudo aside .btn-outline{display:block;text-align:center}
+.projetos-rel{margin-top:5rem}
+.projetos-rel h2{font-size:1.6rem;margin-bottom:2rem}
+
+@media(max-width:900px){
+  .projeto-conteudo{grid-template-columns:1fr;gap:2.5rem}
+  .projeto-conteudo aside{position:static}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo">&lt;<span>dev</span>/&gt;</a>
+    <nav class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <a href="contato.html" class="btn-cta desktop">Vamos conversar</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+<nav class="menu-mobile">
+  <a href="index.html">Início</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="projetos.html">Projetos</a>
+  <a href="contato.html">Contato</a>
+</nav>
+
+<main id="main-projeto"></main>
+
+<footer>
+  <div class="container">
+    <div class="social">
+      <a href="#" target="_blank" aria-label="GitHub">GitHub</a>
+      <a href="#" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+    </div>
+    <p>© 2026 Marcos Vinicius · Feito com 💚 e muito café</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Fonte única (igual aos outros) ===== */
+const PROJETOS = {
+  /*'big-safra': {
+    titulo:'Big Safra · Cerealista',
+    desc:'Site institucional completo para uma cerealista do interior de SP.',
+    tags:['HTML','CSS','JavaScript'],
+    img:'projeto-cerealista',
+    cliente:'Big Safra Cerealista',
+    ano:'2025',
+    papel:'Desenvolvimento front-end',
+    duracao:'3 semanas',
+    link:'#',
+    codigo:'#',
+    desafio:'A Big Safra precisava de um site que mostrasse o catálogo de grãos, permitisse simular pedidos e enviasse tudo direto pro WhatsApp do vendedor — sem depender de plataformas prontas.',
+    solucao:'Criei um site multi-página com identidade visual própria (tema safra), calculadora de pedidos com desconto por volume e frete, e um sistema que monta a mensagem do WhatsApp automaticamente com o pedido completo.',
+    resultados:[
+      'Site 100% responsivo, testado em 12 dispositivos',
+      'Calculadora com mais de 10 produtos configuráveis',
+      'Envio de cotação pro WhatsApp em 1 clique',
+      'Performance: nota 98 no Lighthouse'
+    ],
+    aprendizados:'Aprendi a lidar com muitos produtos em uma única página e a pensar em fluxos de conversão — cada botão precisa levar o usuário pra frente.'
+  },*/
+  'calculadora': {
+    titulo:'Calculadora de Mesa',
+    desc:'Calculadora com visual retrô e fita de registro.',
+    tags:['HTML','CSS','JavaScript'],
+    img:'img/1.png',
+    cliente:'Projeto pessoal',
+    ano:'2025',
+    papel:'Design e desenvolvimento',
+    duracao:'1 semana',
+    link:'#',
+    codigo:'#',
+    desafio:'Fugir das calculadoras genéricas e criar algo com personalidade — que lembrasse uma máquina de mesa antiga, com fita de papel e som de tecla.',
+    solucao:'Construí uma calculadora com aritmética completa, memória (MC/MR/M+/M−), fita de registro que imprime cada conta, suporte a teclado físico e som sintetizado via Web Audio API.',
+    resultados:[
+      'Operações: +, −, ×, ÷, %, ±',
+      'Memória persistente na sessão',
+      'Som de tecla com botão liga/desliga',
+      'Funciona 100% offline'
+    ],
+    aprendizados:'Entendi melhor a Web Audio API e como fazer animações CSS que reagem ao estado da aplicação.'
+  },
+  //'landing': {titulo:'Landing Page Responsiva',desc:'Página de captura com hero animado e formulário funcional.',tags:['HTML','CSS','JavaScript'],img:'projeto-landing',cliente:'Cliente local',ano:'2025',papel:'Front-end',duracao:'1 semana',link:'#',codigo:'#',desafio:'Criar uma landing page de alta conversão para captar leads via WhatsApp.',solucao:'Hero com animação de entrada, formulário que abre o WhatsApp já com a mensagem montada, e design focado em um único CTA.',resultados:['Taxa de conversão acima da média','Carregamento em menos de 1s','Mobile-first'],aprendizados:'Menos é mais — uma landing com um único objetivo converte mais que uma com dez.'},
+  //'cardapio': {titulo:'Cardápio Digital',desc:'Cardápio online para restaurante com filtros e busca.',tags:['HTML','CSS'],img:'projeto-cardapio',cliente:'Restaurante Sabor da Terra',ano:'2024',papel:'Front-end',duracao:'5 dias',link:'#',codigo:'#',desafio:'O restaurante precisava de um cardápio digital que funcionasse bem no celular, já que 90% dos clientes acessam pelo WhatsApp.',solucao:'Layout mobile-first, filtros por categoria, busca instantânea e botão de pedido direto pro WhatsApp.',resultados:['90% dos acessos pelo celular','Pedidos mais rápidos','Sem dependência de app'],aprendizados:'Mobile-first não é só responsivo — é pensar a experiência primeiro no toque.'},
+  //'jogo': {titulo:'Jogo da Memória',desc:'Jogo da memória com animações e ranking.',tags:['HTML','CSS','JavaScript'],img:'projeto-jogo',cliente:'Projeto pessoal',ano:'2024',papel:'Design e desenvolvimento',duracao:'4 dias',link:'#',codigo:'#',desafio:'Criar um jogo simples mas polido, com animações suaves e persistência de ranking.',solucao:'Grid de cartas com flip 3D em CSS, timer, contador de jogadas e ranking salvo no localStorage.',resultados:['Animação 3D de flip','Ranking top 5 persistente','Funciona offline'],aprendizados:'Transform CSS é muito mais poderoso do que eu imaginava — dá pra fazer quase qualquer animação.'},
+  //'blog': {titulo:'Blog Pessoal',desc:'Blog estático com modo escuro e busca local.',tags:['HTML','CSS','JavaScript'],img:'projeto-blog',cliente:'Projeto pessoal',ano:'2024',papel:'Front-end',duracao:'2 semanas',link:'#',codigo:'#',desafio:'Ter um espaço pra escrever sobre desenvolvimento sem depender de plataformas terceiras.',solucao:'Blog estático com artigos em Markdown, busca local em JS e alternância de tema.',resultados:['Carregamento instantâneo','Busca local sem backend','Modo escuro/claro'],aprendizados:'Conteúdo próprio é o melhor portfólio que existe.'},
+  //'portfolio': {titulo:'Este Portfólio',desc:'O site que você está navegando agora.',tags:['HTML','CSS','JavaScript'],img:'projeto-portfolio',cliente:'Pessoal',ano:'2026',papel:'Design e desenvolvimento',duracao:'3 dias',link:'#',codigo:'#',desafio:'Criar um portfólio multi-página com dados centralizados e fácil de manter.',solucao:'Arquitetura com CSS compartilhado e dados dos projetos em um único array JS, renderizados dinamicamente.',resultados:['5 páginas com visual consistente','Dados centralizados','Fácil adicionar novos projetos'],aprendizados:'Centralizar dados evita retrabalho — mudar um lugar atualiza tudo.'},
+  //'relogio': {titulo:'Relógio Analógico',desc:'Relógio em SVG com ponteiros animados.',tags:['HTML','CSS','JavaScript','SVG'],img:'projeto-relogio',cliente:'Projeto pessoal',ano:'2024',papel:'Desenvolvimento',duracao:'2 dias',link:'#',codigo:'#',desafio:'Explorar SVG e animações em tempo real sem bibliotecas.',solucao:'Relógio desenhado em SVG com ponteiros rotacionando via JS a cada segundo.',resultados:['SVG escalável','Atualização em tempo real','Sem dependências'],aprendizados:'SVG é subestimado — dá pra fazer muita coisa legal sem precisar de imagens.'},
+  //'weather': {titulo:'Previsão do Tempo',desc:'App que consulta API de clima.',tags:['JavaScript','API'],img:'projeto-weather',cliente:'Projeto pessoal',ano:'2025',papel:'Desenvolvimento',duracao:'3 dias',link:'#',codigo:'#',desafio:'Aprender a consumir APIs externas e lidar com estados de carregamento e erro.',solucao:'App que busca a previsão via API, mostra ícones animados e trata erros de rede com gracefully degradation.',resultados:['Integração com API real','Tratamento de erros','Ícones animados'],aprendizados:'Consumir APIs parece simples, mas tem muita coisa pra pensar: cache, erro, loading, retry...'}
+};
+
+/* ===== Renderiza o projeto ===== */
+const id = new URLSearchParams(location.search).get('id');
+const main = document.getElementById('main-projeto');
+const p = PROJETOS[id];
+
+if (!p){
+  main.innerHTML = `
+    <section class="page-hero" style="min-height:60vh;display:grid;place-items:center;text-align:center">
+      <div>
+        <h1>Projeto não encontrado</h1>
+        <p style="color:var(--suave);margin:1rem 0 2rem">Esse projeto não existe ou foi removido.</p>
+        <a href="projetos.html" class="btn-cta">Ver todos os projetos</a>
+      </div>
+    </section>`;
+} else {
+  document.title = `${p.titulo} · Marcos Vinicius`;
+  main.innerHTML = `
+    <section class="projeto-hero">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Início</a> ✦ <a href="projetos.html">Projetos</a> ✦ ${p.titulo}</p>
+        <h1 style="font-size:clamp(2.4rem,5vw,3.8rem);margin-bottom:1rem">${p.titulo}</h1>
+        <p style="color:var(--suave);font-size:1.1rem;max-width:640px">${p.desc}</p>
+        <div class="projeto-meta">
+          <span>📅 ${p.ano}</span>
+          <span>👤 ${p.cliente}</span>
+          <span>⏱️ ${p.duracao}</span>
+        </div>
+        <div class="projeto-tags-grande">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+        <div class="projeto-acoes">
+          <a href="${p.link}" target="_blank" class="btn-cta">Ver online →</a>
+          <a href="${p.codigo}" target="_blank" class="btn-outline">Ver código</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <figure class="projeto-capa" data-reveal>
+        <img src="${p.img}" alt="${p.titulo}">
+      </figure>
+    </div>
+
+    <section>
+      <div class="container projeto-conteudo">
+        <article data-reveal>
+          <h2>O desafio</h2>
+          <p>${p.desafio}</p>
+
+          <h2>A solução</h2>
+          <p>${p.solucao}</p>
+
+          <h2>Resultados</h2>
+          <ul>${p.resultados.map(r => `<li>${r}</li>`).join('')}</ul>
+
+          <h2>O que aprendi</h2>
+          <p>${p.aprendizados}</p>
+        </article>
+
+        <aside data-reveal style="--d:.15s">
+          <h4>Detalhes</h4>
+          <dl>
+            <dt>Cliente</dt><dd>${p.cliente}</dd>
+            <dt>Ano</dt><dd>${p.ano}</dd>
+            <dt>Papel</dt><dd>${p.papel}</dd>
+            <dt>Duração</dt><dd>${p.duracao}</dd>
+          </dl>
+          <a href="${p.link}" target="_blank" class="btn-cta">Ver online</a>
+          <a href="${p.codigo}" target="_blank" class="btn-outline">Ver código</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="projetos-rel">
+      <div class="container">
+        <h2>Outros projetos</h2>
+        <div class="projetos-grid" id="rel-grid"></div>
+      </div>
+    </section>
+  `;
+
+  /* Projetos relacionados (3 aleatórios, sem o atual) */
+  const outros = Object.entries(PROJETOS).filter(([k]) => k !== id).sort(() => Math.random() - 0.5).slice(0, 3);
+  const relGrid = document.getElementById('rel-grid');
+  outros.forEach(([k, r], i) => {
+    relGrid.insertAdjacentHTML('beforeend', `
+      <article class="projeto" data-reveal style="--d:${i*0.08}s">
+        <div class="projeto-img">
+          <img src="https://picsum.photos/seed/${r.img}/640/400" alt="${r.titulo}" loading="lazy">
+        </div>
+        <div class="projeto-body">
+          <h3>${r.titulo}</h3>
+          <p>${r.desc}</p>
+          <div class="projeto-tags">${r.tags.map(t => `<span>${t}</span>`).join('')}</div>
+          <div class="projeto-links"><a href="projeto.html?id=${k}">Ver detalhes →</a></div>
+        </div>
+      </article>
+    `);
+  });
+}
+
+/* ===== Lógica compartilhada ===== */
+(function(){
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+  const toggle = document.getElementById('menu-toggle');
+  const backdrop = document.getElementById('backdrop');
+  const fechar = () => { document.body.classList.remove('menu-open'); toggle.textContent = '☰'; };
+  toggle.addEventListener('click', () => {
+    const aberto = document.body.classList.toggle('menu-open');
+    toggle.textContent = aberto ? '✕' : '☰';
+  });
+  backdrop.addEventListener('click', fechar);
+  document.querySelectorAll('.menu-mobile a').forEach(a => a.addEventListener('click', fechar));
+  const alvos = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver(entradas => {
+    entradas.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  alvos.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

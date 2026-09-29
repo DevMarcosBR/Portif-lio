@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contato · Marcos Vinicius</title>
+<meta name="description" content="Vamos trabalhar juntos? Me manda uma mensagem ou chama no WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/portfolio.css">
+<style>
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contato-info h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin-bottom:1rem}
+.contato-info > p{color:var(--suave);margin-bottom:2rem}
+.status{display:inline-flex;align-items:center;gap:.6rem;background:rgba(197,248,42,.08);border:1px solid rgba(197,248,42,.25);padding:.5rem 1rem;border-radius:999px;font-size:.82rem;font-weight:500;margin-bottom:1.6rem;color:var(--acento)}
+.status .dot{width:8px;height:8px;border-radius:50%;background:var(--acento);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+
+.sucesso{display:none;text-align:center;padding:2rem 1rem}
+.sucesso.visivel{display:block}
+.sucesso .check{width:72px;height:72px;margin:0 auto 1.4rem;border-radius:50%;background:var(--acento);color:#000;display:grid;place-items:center;font-size:2rem;animation:pop .5s cubic-bezier(.2,.65,.25,1)}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.sucesso h3{font-size:1.4rem;margin-bottom:.6rem}
+.sucesso p{color:var(--suave);margin-bottom:1.6rem}
+
+@media(max-width:900px){
+  .contato-grid{grid-template-columns:1fr;gap:3rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo">&lt;<span>dev</span>/&gt;</a>
+    <nav class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="contato.html" class="ativo">Contato</a>
+    </nav>
+    <a href="contato.html" class="btn-cta desktop">Vamos conversar</a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<div class="backdrop" id="backdrop"></div>
+<nav class="menu-mobile">
+  <a href="index.html">Início</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="projetos.html">Projetos</a>
+  <a href="contato.html">Contato</a>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Início</a> ✦ Contato</p>
+      <h1>Vamos <em>trabalhar juntos?</em></h1>
+      <p>Tem um projeto em mente, uma ideia ou só quer trocar uma ideia sobre desenvolvimento? Me manda uma mensagem.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container contato-grid">
+      <div class="contato-info" data-reveal>
+        <span class="status"><span class="dot"></span> Disponível para novos projetos</span>
+        <h2>Me chama no canal que for mais fácil</h2>
+        <p>Respondo em até 24h em dias úteis. Se for urgente, o WhatsApp é o caminho mais rápido.</p>
+
+        <a href="mailto:seuemail@exemplo.com" class="contato-item">
+          <span class="ico">✉️</span>
+          <span><small>E-mail</small><strong>viniciusmsc14@gmail.com</strong></span>
+        </a>
+        <a href="https://wa.me/5547991632406" target="_blank" rel="noopener" class="contato-item">
+          <span class="ico">💬</span>
+          <span><small>WhatsApp</small><strong>(47) 99163-2406</strong></span>
+        </a>
+        <a href="https://github.com/DevMarcosBR" target="_blank" rel="noopener" class="contato-item">
+          <span class="ico">🐙</span>
+          <span><small>GitHub</small><strong>github.com/DevMarcosBR</strong></span>
+        </a>
+        <a href="https://www.linkedin.com/in/marcos-vinicius-473155251/" target="_blank" rel="noopener" class="contato-item">
+          <span class="ico">💼</span>
+          <span><small>LinkedIn</small><strong>linkedin.com/in/marcos-vinicius</strong></span>
+        </a>
+        <div class="contato-item">
+          <span class="ico">📍</span>
+          <span><small>Localização</small><strong>Rio Negro/PR · Remoto para todo Brasil</strong></span>
+        </div>
+      </div>
+
+      <div data-reveal style="--d:.15s">
+        <form class="form" id="form-contato">
+          <h3>Ou manda uma mensagem</h3>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div class="form-field">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="voce@email.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field full">
+              <label for="tipo">Tipo de projeto</label>
+              <select id="tipo" name="tipo">
+                <option>Site institucional</option>
+                <option>Landing page</option>
+                <option>E-commerce / loja</option>
+                <option>Aplicação web</option>
+                <option>Outro / ainda não sei</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field full">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Conta sua ideia, prazo, orçamento..." required></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-cta">Enviar mensagem →</button>
+        </form>
+
+        <div class="sucesso form" id="sucesso">
+          <div class="check">✓</div>
+          <h3>Mensagem enviada!</h3>
+          <p>Obrigado pelo contato. Te respondo em até 24h no e-mail ou WhatsApp informado.</p>
+          <button type="button" class="btn-outline" id="btn-novo">Enviar outra mensagem</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:var(--bg-2)">
+    <div class="container" style="max-width:780px">
+      <div class="section-head" data-reveal>
+        <span class="tag">Dúvidas frequentes</span>
+        <h2>Antes de você perguntar...</h2>
+      </div>
+      <div data-reveal style="--d:.1s">
+        <details class="faq-item">
+          <summary>Quanto custa um site?</summary>
+          <div class="faq-body">Depende muito do escopo. Uma landing page simples sai a partir de R$ 500; um site institucional completo, entre R$ 1.000 e R$ 3.000. Me manda os detalhes que eu te passo um orçamento sem compromisso.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Quanto tempo leva pra ficar pronto?</summary>
+          <div class="faq-body">Landing page: 1 a 2 semanas. Site institucional: 3 a 5 semanas. Projetos maiores, a gente conversa. Sempre combinamos prazo antes de começar.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Você faz manutenção depois?</summary>
+          <div class="faq-body">Faço sim. Posso fazer um pacote mensal de manutenção (atualizações, pequenos ajustes, backup) ou atender sob demanda quando precisar.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Trabalha com qual tecnologia?</summary>
+          <div class="faq-body">HTML, CSS e JavaScript puro pra maioria dos projetos. Pra casos mais complexos, consigo trabalhar com React, Next.js ou Node.js. A escolha da stack depende do que o projeto precisa.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Preciso fornecer o design?</summary>
+          <div class="faq-body">Não necessariamente. Posso criar o design do zero com base no seu negócio, ou trabalhar em cima de um layout que você já tenha no Figma — o que for mais prático pra você.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Atende cliente de fora da cidade?</summary>
+          <div class="faq-body">Com certeza. Trabalho 100% remoto, então atendo clientes de qualquer lugar do Brasil. Reuniões por videochamada, entregas por repositório no GitHub.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="social">
+      <a href="#" target="_blank" aria-label="GitHub">GitHub</a>
+      <a href="#" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+      <a href="#" target="_blank" aria-label="Instagram">Instagram</a>
+    </div>
+    <p>© 2026 Marcos Vinicius · Feito com 💚 e muito café</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+  const toggle = document.getElementById('menu-toggle');
+  const backdrop = document.getElementById('backdrop');
+  const fechar = () => { document.body.classList.remove('menu-open'); toggle.textContent = '☰'; };
+  toggle.addEventListener('click', () => {
+    const aberto = document.body.classList.toggle('menu-open');
+    toggle.textContent = aberto ? '✕' : '☰';
+  });
+  backdrop.addEventListener('click', fechar);
+  document.querySelectorAll('.menu-mobile a').forEach(a => a.addEventListener('click', fechar));
+  const alvos = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver(entradas => {
+    entradas.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  alvos.forEach(el => io.observe(el));
+
+  /* Formulário → WhatsApp */
+  const form = document.getElementById('form-contato');
+  const sucesso = document.getElementById('sucesso');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const tipo = document.getElementById('tipo').value;
+    const msg = document.getElementById('mensagem').value;
+    const texto = `Olá! Vim pelo seu portfólio.%0A%0A*Nome:* ${nome}%0A*E-mail:* ${email}%0A*Tipo de projeto:* ${tipo}%0A%0A*Mensagem:*%0A${msg}`;
+    window.open(`https://wa.me/5514999999999?text=${texto}`, '_blank');
+    form.style.display = 'none';
+    sucesso.classList.add('visivel');
+  });
+  document.getElementById('btn-novo').addEventListener('click', () => {
+    form.reset();
+    form.style.display = 'block';
+    sucesso.classList.remove('visivel');
+  });
+})();
+</script>
+</body>
+</html>
